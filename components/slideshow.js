@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { customers, partners } from "../components/partnersFetcher";
-import emailjs from "@emailjs/browser";
 
 const SlideShow = () => {
   const [name, setName] = useState("");
