@@ -1,7 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { customers, partners } from "../components/partnersFetcher";
+import emailjs from "@emailjs/browser";
 
 const SlideShow = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log("sending");
+
+    let data = {
+      name,
+      email,
+      message,
+    };
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log("Response received");
+      if (res.status === 200) {
+        console.log("Response succeeded!");
+        setSubmitted(true);
+        setName("");
+        setEmail("");
+        setMessage("");
+      }
+    });
+  };
+
   return (
     <main>
       <div
@@ -737,7 +773,11 @@ const SlideShow = () => {
         <div className="container mx-auto px-4 mt-5">
           <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
             <div className="w-full lg:w-6/12 px-4">
-              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300">
+              <form
+                // action="https://formsubmit.co/kartikjha13@gmail.com"
+                // method="POST"
+                className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300"
+              >
                 <div className="flex-auto p-5 lg:p-10">
                   <h4 className="text-2xl font-semibold">
                     Want to work with us?
@@ -754,9 +794,12 @@ const SlideShow = () => {
                     </label>
                     <input
                       type="text"
+                      value={name}
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Full Name"
                       style={{ transition: "all .15s ease" }}
+                      required
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
 
@@ -771,7 +814,10 @@ const SlideShow = () => {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Email"
+                      value={email}
                       style={{ transition: "all .15s ease" }}
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -787,19 +833,23 @@ const SlideShow = () => {
                       cols="80"
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Type a message..."
+                      required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
                   </div>
                   <div className="text-center mt-6">
-                    <button
+                    <input
                       className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
+                      type="submit"
                       style={{ transition: "all .15s ease" }}
-                    >
-                      Send Message
-                    </button>
+                      onClick={(e) => {
+                        handleSubmit(e);
+                      }}
+                    />
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
