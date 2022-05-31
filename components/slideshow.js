@@ -823,7 +823,7 @@ const SlideShow = () => {
                       placeholder="Full Name"
                       style={{ transition: "all .15s ease" }}
                       required
-                     value={inputs.name}
+                     defaultValue={inputs.name}
 					onChange={handleChange}
                     />
                   </div>
@@ -841,7 +841,7 @@ const SlideShow = () => {
                       placeholder="Email"
                       style={{ transition: "all .15s ease" }}
                       required
-                     value={inputs.email}
+                     defaultValue={inputs.email}
 					onChange={handleChange}
                     />
                   </div>
@@ -859,7 +859,7 @@ const SlideShow = () => {
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Type a message..."
                       required
-                     value={inputs.message}
+                    defaultValue={inputs.message}
 					onChange={handleChange}
                     />
                   </div>
