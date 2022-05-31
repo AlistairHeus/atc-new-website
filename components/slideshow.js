@@ -779,7 +779,7 @@ const SlideShow = () => {
               >
                 <div className="flex-auto p-5 lg:p-10">
                   <h4 className="text-2xl font-semibold">
-                    Want to work with us?
+                    Want some more information? Have additional queries?
                   </h4>
                   <p className="leading-relaxed mt-1 mb-4 text-gray-600">
                     Complete this form and we will get back to you in 24 hours.
