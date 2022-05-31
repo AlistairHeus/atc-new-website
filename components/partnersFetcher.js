@@ -70,10 +70,7 @@ export const partners = [
     img: KASPERSKEYIMG,
     title: "",
   },
-  {
-    img: SHREELIPIIMG,
-    title: "",
-  },
+
   {
     img: TALLYIMG,
     title: "",
