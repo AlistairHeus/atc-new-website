@@ -2,40 +2,66 @@ import React, { useState, useEffect } from "react";
 import { customers, partners } from "../components/partnersFetcher";
 
 const SlideShow = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  
+  const [inputs, setInputs] = useState({
+		name: '',
+		email: '',
+		message: '',
+	})
+
+	const [form, setForm] = useState('')
+
+	const handleChange = (e) => {
+		setInputs((prev) => ({
+			...prev,
+			[e.target.id]: e.target.value,
+		}))
+	}
+  
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    console.log("sending");
+  const onSubmitForm = async (e) => {
+	e.preventDefault()
 
-    let data = {
-      name,
-      email,
-      message,
-    };
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      console.log("Response received");
-      if (res.status === 200) {
-        console.log("Response succeeded!");
-        setSubmitted(true);
-        setName("");
-        setEmail("");
-        setMessage("");
-      }
-    });
-  };
+	if (inputs.name && inputs.email && inputs.message) {
+		setForm({ state: 'loading' })
+		try {
+			const res = await fetch(`api/contact`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(inputs),
+			})
+
+			const { error } = await res.json()
+
+			if (error) {
+				setForm({
+					state: 'error',
+					message: error,
+				})
+				return
+			}
+
+			setForm({
+				state: 'success',
+				message: 'Your message was sent successfully.',
+			})
+			setInputs({
+				name: '',
+				email: '',
+				message: '',
+			})
+		} catch (error) {
+			setForm({
+				state: 'error',
+				message: 'Something went wrong',
+			})
+		}
+	}
+}
 
   return (
     <main>
@@ -793,12 +819,12 @@ const SlideShow = () => {
                     </label>
                     <input
                       type="text"
-                      value={name}
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Full Name"
                       style={{ transition: "all .15s ease" }}
                       required
-                      onChange={(e) => setName(e.target.value)}
+                     value={inputs.name}
+					onChange={handleChange}
                     />
                   </div>
 
@@ -813,10 +839,10 @@ const SlideShow = () => {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Email"
-                      value={email}
                       style={{ transition: "all .15s ease" }}
                       required
-                      onChange={(e) => setEmail(e.target.value)}
+                     value={inputs.email}
+					onChange={handleChange}
                     />
                   </div>
 
@@ -833,8 +859,8 @@ const SlideShow = () => {
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Type a message..."
                       required
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                     value={inputs.message}
+					onChange={handleChange}
                     />
                   </div>
                   <div className="text-center mt-6">
@@ -846,6 +872,13 @@ const SlideShow = () => {
                         handleSubmit(e);
                       }}
                     />
+{form.state === 'loading' ? (
+					<div>Sending....</div>
+				) : form.state === 'error' ? (
+					<div>{form.message}</div>
+				) : (
+					form.state === 'success' && <div>Sent successfully</div>
+				)}
                   </div>
                 </div>
               </form>
