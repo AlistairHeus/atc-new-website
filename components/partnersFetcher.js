@@ -90,6 +90,11 @@ export const partners = [
 ];
 
 export const customers = [
+  
+   {
+    img: HALDIRAMIMG,
+    title: "",
+  },
   {
     img: RKNECIMG,
     title: "",
@@ -107,10 +112,7 @@ export const customers = [
     img: GAMMONIMG,
     title: "",
   },
-  {
-    img: HALDIRAMIMG,
-    title: "",
-  },
+ 
   {
     img: PANACHEIMG,
     title: "",
