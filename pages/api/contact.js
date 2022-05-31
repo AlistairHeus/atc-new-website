@@ -22,11 +22,14 @@ export default function (req, res) {
     html: `<div>${req.body.message}</div><p>Sent from: ${req.body.email}</p>`,
   };
 
-  transporter.sendMail(mailData, function (err, info) {
-    if (err) console.log(err);
-    else console.log(info);
-  });
-
-  console.log(req.body);
-  res.send("success");
+  transporter.sendMail(mailData, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.send("error" + JSON.stringify(err));
+    } else {
+      console.log("mail send");
+      res.send("success");
+    }
+});
+  
 }
