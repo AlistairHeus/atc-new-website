@@ -31,7 +31,9 @@ const SlideShow = () => {
         (result) => {
     setLoading(false);
           console.log(result.text);
-          form.reset();
+          setName("")
+          setEmail("")
+          setMessage("")
           alert("Message received! We will get back to you shortly!");
         },
         (error) => {
