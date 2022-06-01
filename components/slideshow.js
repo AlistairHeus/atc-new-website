@@ -17,7 +17,9 @@ const SlideShow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
+    setLoading(true);
+    
     emailjs
       .sendForm(
         "service_lgzjzk9",
@@ -27,9 +29,13 @@ const SlideShow = () => {
       )
       .then(
         (result) => {
+    setLoading(false);
           console.log(result.text);
+          form.reset();
+          alert("Message received! We will get back to you shortly!");
         },
         (error) => {
+    setLoading(true);
           console.log(error.text);
         }
       );
