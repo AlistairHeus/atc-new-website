@@ -1,67 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { customers, partners } from "../components/partnersFetcher";
+import emailjs from "@emailjs/browser";
 
 const SlideShow = () => {
-  
-  const [inputs, setInputs] = useState({
-		name: '',
-		email: '',
-		message: '',
-	})
-
-	const [form, setForm] = useState('')
-
-	const handleChange = (e) => {
-		setInputs((prev) => ({
-			...prev,
-			[e.target.id]: e.target.value,
-		}))
-	}
-  
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const form = useRef();
 
-  const onSubmitForm = async (e) => {
-	e.preventDefault()
+  const userId = "user_...";
+  const serviceId = "service_...";
+  const templateId = "template_...";
+  const accessToken = "e2e1...";
 
-	if (inputs.name && inputs.email && inputs.message) {
-		setForm({ state: 'loading' })
-		try {
-			const res = await fetch(`api/contact`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(inputs),
-			})
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-			const { error } = await res.json()
-
-			if (error) {
-				setForm({
-					state: 'error',
-					message: error,
-				})
-				return
-			}
-
-			setForm({
-				state: 'success',
-				message: 'Your message was sent successfully.',
-			})
-			setInputs({
-				name: '',
-				email: '',
-				message: '',
-			})
-		} catch (error) {
-			setForm({
-				state: 'error',
-				message: 'Something went wrong',
-			})
-		}
-	}
-}
+    emailjs
+      .sendForm(
+        "service_lgzjzk9",
+        "template_a3oynaa",
+        form.current,
+        "uFtHNCnXOdeLosjeG"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
     <main>
@@ -799,13 +771,15 @@ const SlideShow = () => {
           <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
             <div className="w-full lg:w-6/12 px-4">
               <form
+                ref={form}
+                onSubmit={handleSubmit}
                 // action="https://formsubmit.co/kartikjha13@gmail.com"
                 // method="POST"
                 className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300"
               >
                 <div className="flex-auto p-5 lg:p-10">
                   <h4 className="text-2xl font-semibold">
-                    Want some more information? Have additional queries?
+                    Want to work with us?
                   </h4>
                   <p className="leading-relaxed mt-1 mb-4 text-gray-600">
                     Complete this form and we will get back to you in 24 hours.
@@ -823,8 +797,7 @@ const SlideShow = () => {
                       placeholder="Full Name"
                       style={{ transition: "all .15s ease" }}
                       required
-                     defaultValue={inputs.name}
-					onChange={handleChange}
+                      name="name"
                     />
                   </div>
 
@@ -841,8 +814,7 @@ const SlideShow = () => {
                       placeholder="Email"
                       style={{ transition: "all .15s ease" }}
                       required
-                     defaultValue={inputs.email}
-					onChange={handleChange}
+                      name="email"
                     />
                   </div>
 
@@ -859,8 +831,7 @@ const SlideShow = () => {
                       className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                       placeholder="Type a message..."
                       required
-                    defaultValue={inputs.message}
-					onChange={handleChange}
+                      name="message"
                     />
                   </div>
                   <div className="text-center mt-6">
@@ -868,17 +839,7 @@ const SlideShow = () => {
                       className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                       type="submit"
                       style={{ transition: "all .15s ease" }}
-                      onClick={(e) => {
-                        handleSubmit(e);
-                      }}
                     />
-{form.state === 'loading' ? (
-					<div>Sending....</div>
-				) : form.state === 'error' ? (
-					<div>{form.message}</div>
-				) : (
-					form.state === 'success' && <div>Sent successfully</div>
-				)}
                   </div>
                 </div>
               </form>
