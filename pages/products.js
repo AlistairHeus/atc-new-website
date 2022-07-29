@@ -162,13 +162,13 @@ const products = ({ prodPosts }) => {
 
           {/*  */}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 lg:gap-y-18 mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 lg:gap-y-18 my-32 ">
             {/* ::Partner 1 -> ALL */}
 
             {categoryName === "all"
               ? prodPosts.map((post, index) => (
                   <Link href={`/products/${post.productSlug}`}>
-                    <div className="px-4 py-5 flex-auto text-center shadow-lg m-3">
+                    <div className="px-4 py-5 flex-auto text-center shadow-lg m-3 cursor-pointer">
                       <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 rounded-full bg-blue-400 ">
                         <img src={post.productMatter.coverImage} />
                       </div>
