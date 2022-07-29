@@ -56,6 +56,12 @@ const callsToAction = [
 ];
 const resources = [
   {
+    name: "About",
+    description: "About Aarkay Techno Consultants, Pvt Ltd.",
+    href: "/about",
+    icon: ShieldCheckIcon,
+  },
+  {
     name: "Expertise Solutions",
     description:
       "Expertise solutions along with the feasible & tested classic hardware devices and software.",
@@ -74,12 +80,6 @@ const resources = [
       "See what meet-ups and other events we might be planning near you.",
     href: "#",
     icon: CalendarIcon,
-  },
-  {
-    name: "Security",
-    description: "Understand how we take your privacy seriously.",
-    href: "#",
-    icon: ShieldCheckIcon,
   },
 ];
 const recentPosts = [
@@ -170,22 +170,6 @@ export default function Navbar() {
                             </a>
                           ))}
                         </div>
-                        <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                          {callsToAction.map((item) => (
-                            <div key={item.name} className="flow-root">
-                              <a
-                                href={item.href}
-                                className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
-                              >
-                                <item.icon
-                                  className="flex-shrink-0 h-6 w-6 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                                <span className="ml-3">{item.name}</span>
-                              </a>
-                            </div>
-                          ))}
-                        </div>
                       </div>
                     </Popover.Panel>
                   </Transition>
@@ -258,6 +242,22 @@ export default function Navbar() {
                             </a>
                           ))}
                         </div>
+                        <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                          {callsToAction.map((item) => (
+                            <div key={item.name} className="flow-root">
+                              <a
+                                href={item.href}
+                                className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                              >
+                                <item.icon
+                                  className="flex-shrink-0 h-6 w-6 text-gray-400"
+                                  aria-hidden="true"
+                                />
+                                <span className="ml-3">{item.name}</span>
+                              </a>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </Popover.Panel>
                   </Transition>
@@ -271,12 +271,6 @@ export default function Navbar() {
               className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 no-underline hover:underline"
             >
               Contact Us
-            </a>
-            <a
-              href="#"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 no-underline hover:underline"
-            >
-              Sign up
             </a>
           </div>
         </div>
@@ -358,12 +352,6 @@ export default function Navbar() {
                 ))}
               </div>
               <div>
-                <a
-                  href="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700  no-underline hover:underline"
-                >
-                  Sign up
-                </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   {" "}
                   <a

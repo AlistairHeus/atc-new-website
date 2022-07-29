@@ -14,6 +14,7 @@ import PEPPERLFUCH from "../public/images/partners/Pepperlfuch.png";
 import POSIFLEXIMG from "../public/images/partners/Posiflex.png";
 import SAMSUNGIMG from "../public/images/partners/Samsung.png";
 import SATOIMG from "../public/images/partners/Sato.png";
+import SHREELIPIIMG from "../public/images/partners/Shree-lipi.png";
 import TALLYIMG from "../public/images/partners/Tally.png";
 import ZEBRAIMG from "../public/images/partners/Zebra.png";
 
@@ -70,7 +71,10 @@ export const partners = [
     img: KASPERSKEYIMG,
     title: "",
   },
-
+  {
+    img: SHREELIPIIMG,
+    title: "",
+  },
   {
     img: TALLYIMG,
     title: "",
@@ -90,11 +94,6 @@ export const partners = [
 ];
 
 export const customers = [
-  
-   {
-    img: HALDIRAMIMG,
-    title: "",
-  },
   {
     img: RKNECIMG,
     title: "",
@@ -112,7 +111,10 @@ export const customers = [
     img: GAMMONIMG,
     title: "",
   },
- 
+  {
+    img: HALDIRAMIMG,
+    title: "",
+  },
   {
     img: PANACHEIMG,
     title: "",

@@ -17,9 +17,7 @@ const SlideShow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    setLoading(true);
-    
+
     emailjs
       .sendForm(
         "service_lgzjzk9",
@@ -29,15 +27,9 @@ const SlideShow = () => {
       )
       .then(
         (result) => {
-    setLoading(false);
           console.log(result.text);
-          setName("")
-          setEmail("")
-          setMessage("")
-          alert("Message received! We will get back to you shortly!");
         },
         (error) => {
-    setLoading(true);
           console.log(error.text);
         }
       );
@@ -703,7 +695,11 @@ const SlideShow = () => {
           </div>
           <div className="flex flex-wrap mt-12 justify-center">
             <div className="w-full lg:w-3/12 px-4 text-center">
-              <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <a
+                href="https://goo.gl/maps/kp2gCZk1DfziKYwB8"
+                target="_blank"
+                className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center cursor-pointer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -718,7 +714,13 @@ const SlideShow = () => {
                     d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
                   />
                 </svg>
+              </a>
+              <div>
+                <span className="mt-2 text-xs text-gray-500">
+                  (Click to redirect to Google Maps)
+                </span>
               </div>
+
               <h6 className="text-xl mt-5 font-semibold text-white">
                 Location
               </h6>
@@ -728,7 +730,10 @@ const SlideShow = () => {
               </p>
             </div>
             <div className="w-full lg:w-3/12 px-4 text-center">
-              <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <a
+                href="tel:+917122252443"
+                className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -743,6 +748,11 @@ const SlideShow = () => {
                     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                   />
                 </svg>
+              </a>
+              <div>
+                <span className="mt-2 text-xs text-gray-500">
+                  (Click to redirect to your dialer)
+                </span>
               </div>
               <h5 className="text-xl mt-5 font-semibold text-white">
                 Grow your market
@@ -752,7 +762,11 @@ const SlideShow = () => {
               </p>
             </div>
             <div className="w-full lg:w-3/12 px-4 text-center">
-              <div className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=support@atcgroup.co.in"
+                target="_blank"
+                className="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"
@@ -767,6 +781,11 @@ const SlideShow = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
+              </a>
+              <div>
+                <span className="mt-2 text-xs text-gray-500">
+                  (Click to redirect to Gmail)
+                </span>
               </div>
               <h5 className="text-xl mt-5 font-semibold text-white">Mail us</h5>
               <p className="mt-2 mb-4 text-gray-500">info@atcgroup.co.in</p>
